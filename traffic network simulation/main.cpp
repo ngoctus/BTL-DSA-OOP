@@ -43,13 +43,40 @@ int main(int argc, char** argv){
 	q1.add_edge_by_id("Duong A", 10111, 101, 11, 0);
 	q1.add_edge_by_id("Duong B", 10115, 101, 14, 0);
 	
-//    m.add_node(unique_ptr<node>(new node("A", 1, 2, 3)));
-//	m.add_node(unique_ptr<node>(new location("B", 2, 4, 5, 20, lo_type::RESTAURANT)));
-//	m.add_edge(unique_ptr<edge>(new edge("AB", 11, 1, 2, 22, 1)));
-//	m.add_edge_by_id("Duong AB", 707, 7, 3, 0);
-//	m.add_edge_by_id("Duong AB", 707, 1, 2, 0);
+	q1.show_all();
+	
+	//============== THU NGHIEM TIM KIEM =======================
+    std::string search_term;
+    std::cout << "\n----------------------------------------\n";
+    std::cout << "Nhap ten/chuoi con cua Node can tim: ";
+    
+    // Ð?c toàn b? dòng nh?p vào (bao g?m c? kho?ng tr?ng)
+    std::getline(std::cin, search_term); 
+    
+    if (search_term.empty()) {
+        std::cout << "Chuoi tim kiem khong duoc de trong.\n";
+        return 0;
+    }
 
-    q1.show_all();
+    // Goi ham tim kiem
+    std::vector<node*> found_nodes = q1.search_node_by_name(search_term);
+
+    // In ket qua
+    std::cout << "\nKet qua tim kiem cho \"" << search_term << "\" (" 
+              << found_nodes.size() << " ket qua):\n";
+              
+    if (found_nodes.empty()) {
+        std::cout << "=> Khong tim thay Node nao.\n";
+    } else {
+        std::cout << "========================================\n";
+        for (node* n_ptr : found_nodes) {
+            n_ptr->display_name();
+        }
+        std::cout << "========================================\n";
+    }
+    
+    // ... (Ph?n còn l?i c?a main.cpp)
+    
     
 	return 0;
 }
